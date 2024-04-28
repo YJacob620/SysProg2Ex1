@@ -22,4 +22,4 @@ tests.o: tests.cpp doctest.h Algorithms.o
 	clang++ $(FLAGS) -c tests.cpp
 
 clean:
-	rm *.o tests
+	rm *.o tests main
