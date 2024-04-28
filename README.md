@@ -11,14 +11,8 @@
 
 | Command | Description |
 | ----- | ----- |
-| `make` or `make main` | Creates and runs an executable called `main` that runs all of the required 7 functions on a certain graph. The graph, or rather the adjacency matrix, in main.cpp can be changed to see how it affects the outputs of the functions.|
+| `make` or `make main` | Creates and runs an executable called `main` that runs all of the required 7 functions* on a certain graph. The graph, or rather the adjacency matrix, in main.cpp can be changed to see how it affects the outputs of the functions.|
 | `make tests` | Creates and runs a doctest executable called `tests` that runs dozens of tests on the required 7 functions and prints a tests summary. |
 
-`make` or `make main`
-
-Creates and runs an executable called `main` that runs all of the required 7 functions on a certain graph. 
-                        The graph, or rather the adjacency matrix, in main.cpp can be changed to see how it affects the outputs of the functions.
-
-`make tests`
-
-Creates and runs a doctest executable called `tests` that runs dozens of tests on the required 7 functions and prints a tests summary.
+*תזכורת: 7 הפונקציות הנחוצות (למטלה) הן: 
+`g.loadGraph(), g.printGraph(), isConnected(g), shortestPath(g, src, dest), isContainsCycle(g), isBipartite(g), negativeCycle(g)`
