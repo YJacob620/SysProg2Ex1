@@ -15,6 +15,7 @@
 | `make tests` | Creates and runs a doctest executable called `tests` that runs dozens of tests on the required 7 functions and prints a tests summary. |
 
 *תזכורת: 7 הפונקציות הנחוצות (למטלה) הן: 
+
 `g.loadGraph(), g.printGraph(), isConnected(g), shortestPath(g, src, dest), isContainsCycle(g), isBipartite(g), negativeCycle(g)`
 ## מידע נוסף על הקוד והמימוש
 1) במימוש זה לא מתקבלים גרפים שבהם צלעות מקודקוד לעצמו (ייזרקו על כך שגיאות מתאימות).
