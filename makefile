@@ -2,11 +2,11 @@
 # EMAIL: yairjacob620@gmail.com
 
 FLAGS=-Wall
-C_FILES = Graph.cpp Algorithms.cpp tests.cpp
+C_FILES = Graph.cpp Algorithms.cpp
 
-# all: 
-# 	clang++ $(FLAGS) $(C_FILES) -o tests
-# 	./tests 
+main: $(C_FILES) main.cpp
+	clang++ $(FLAGS) $(C_FILES) main.cpp -o main
+	./main
 
 test: Graph.o Algorithms.o tests.o
 	clang++ $(FLAGS) *.o -o tests
