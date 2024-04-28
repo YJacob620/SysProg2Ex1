@@ -10,7 +10,7 @@
 דרך טרמינל שנפתח בתיקייה עם כל 8 הקבצים, ניתן להריץ את הפקודות הבאות:
 
 | Command | Description |
-| ----- | ----- |
+| ---------- | ---------- |
 | `make` or<br>`make main` | Creates and runs an executable called `main` that runs all of the required 7 functions* on a certain graph. The graph (or rather the adjacency matrix) is in main.cpp, and can be changed to see how it affects the outputs of the functions.|
 | `make tests` | Creates and runs a doctest executable called `tests` that runs dozens of tests on the required 7 functions and prints a tests summary. |
 | `make clean` | Deletes all .o files and executables. |
