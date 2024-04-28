@@ -155,7 +155,5 @@ namespace ex1 {
         return directed;
     }
 
-    Graph::~Graph() {
-        cout << "DISTRUCTOR" << endl;
-    }
+    Graph::~Graph() {}
 }
