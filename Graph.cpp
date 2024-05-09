@@ -56,8 +56,6 @@ namespace ex1 {
 
     void Graph::run_FloydWarshall() {
         auto rows = this->matrix.size();
-        // this->SP_weights.resize(rows, vector<T>(rows));
-        // this->SP_tree.resize(rows, vector<T>(rows));
         this->SP_weights = vector<vector<T>>(rows, vector<T>(rows));
         this->SP_tree = vector<vector<T>>(rows, vector<T>(rows));
 
