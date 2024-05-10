@@ -8,13 +8,13 @@ namespace ex1 {
     ///        where the elements in the main diagonal are zeros.
     /// @param matrix Matrix to check.
     /// @return True if the matrix is valid, False otherwise.
-    bool isValid(const vector<vector<T>>& matrix) {
+    bool isValid(const vector<vector<G>>& matrix) {
         if (matrix.empty()) {
             return false;
         }
         auto rows = matrix.size();
         for (int i = 0;i < rows;i++) {
-            vector<T> vec = matrix[i];
+            vector<G> vec = matrix[i];
             if (vec.size() != rows || vec[i] != 0) {
                 return false;
             }
@@ -25,7 +25,7 @@ namespace ex1 {
     /// @brief Checks if an adjacency matrix is a directed graph. Assumes the matrix is valid.
     /// @param matrix Matrix to check.
     /// @return True if the matrix is directed, False otherwise.
-    bool checkIfDirected(const vector<vector<T>>& matrix) {
+    bool checkIfDirected(const vector<vector<G>>& matrix) {
         auto rows = matrix.size();
         for (int i = 0;i < rows;i++) {
             for (int j = i;j < rows;j++) {
@@ -39,9 +39,9 @@ namespace ex1 {
 
     /// @brief Prints a matrix.
     /// @param mat Matrix to print.
-    void printMatrix(const vector<vector<T>>& mat) {
-        for (const vector<T>& vec : mat) {
-            for (T element : vec) {
+    void printMatrix(const vector<vector<G>>& mat) {
+        for (const vector<G>& vec : mat) {
+            for (G element : vec) {
                 if (element == INF) {
                     cout << "inf";
                 }
@@ -56,13 +56,13 @@ namespace ex1 {
 
     void Graph::run_FloydWarshall() {
         auto rows = this->matrix.size();
-        this->SP_weights = vector<vector<T>>(rows, vector<T>(rows));
-        this->SP_tree = vector<vector<T>>(rows, vector<T>(rows));
+        this->SP_weights = vector<vector<G>>(rows, vector<G>(rows));
+        this->SP_tree = vector<vector<G>>(rows, vector<G>(rows));
 
         /* Shortest paths matrix and SP-tree initialization */
         for (int i = 0;i < rows;i++) {
             for (int j = 0;j < rows;j++) {
-                T val = this->matrix[i][j];
+                G val = this->matrix[i][j];
                 SP_weights[i][j] = val;
                 if (val == INF) {
                     SP_tree[i][j] = NOPATH;
@@ -92,7 +92,7 @@ namespace ex1 {
         }
     }
 
-    void Graph::loadGraph(const vector<vector<T>>& matrix) {
+    void Graph::loadGraph(const vector<vector<G>>& matrix) {
         if (!isValid(matrix)) {
             throw runtime_error("Invalid graph. A graph should be a square matrix where the "
                 "elements in the main diagonal are zeros.");
@@ -111,8 +111,8 @@ namespace ex1 {
         }
         unsigned vertices = this->matrix[0].size();
         unsigned edges = 0;
-        for (const vector<T>& vec : this->matrix) {
-            for (T element : vec) {
+        for (const vector<G>& vec : this->matrix) {
+            for (G element : vec) {
                 if (element != INF) {
                     edges++;
                 }
@@ -132,15 +132,15 @@ namespace ex1 {
         return ans;
     }
 
-    vector<vector<T>> Graph::get_matrix() const {
+    vector<vector<G>> Graph::get_matrix() const {
         return this->matrix;
     }
 
-    vector<vector<T>> Graph::get_SPT() const {
+    vector<vector<G>> Graph::get_SPT() const {
         return this->SP_tree;
     }
 
-    vector<vector<T>> Graph::get_SPW() const {
+    vector<vector<G>> Graph::get_SPW() const {
         return this->SP_weights;
     }
 

@@ -9,7 +9,7 @@ using namespace Algorithms;
 
 int main() {
   Graph g;
-  vector<vector<T>> v2 = {
+  vector<vector<G>> v2 = {
         {0,INF,INF,INF,1}, // 2 -> 4 <-> 3 <-> 1 , 0 -> 4
         {INF,0,INF,-5,INF},
         {INF,INF,0,INF,1},

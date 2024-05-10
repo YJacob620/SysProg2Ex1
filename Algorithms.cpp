@@ -47,7 +47,7 @@ namespace ex1 {
         /// @return The shortest path between SRC and DEST as a vector of indexes of vertices. 
         ///         If no path exists returns an empty vector.
         vector<unsigned> getShortestPath(const Graph& g, unsigned src, unsigned dest, bool negCycle) {
-            vector<vector<T>> spt = g.get_SPT();
+            vector<vector<G>> spt = g.get_SPT();
             unsigned rows = spt.size();
             if (src >= rows || dest >= rows) {
                 throw runtime_error("Vertices out of range.");
@@ -55,7 +55,7 @@ namespace ex1 {
             if (spt[src][dest] == NOPATH) {
                 return vector<unsigned>();
             }
-            vector<vector<T>> mat = g.get_matrix();
+            vector<vector<G>> mat = g.get_matrix();
             vector<unsigned> inversePath;
             inversePath.push_back(dest);
             if (negCycle) {
