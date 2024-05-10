@@ -14,7 +14,7 @@ namespace ex1 {
         }
 
         bool isConnected(const Graph& g) {
-            checkValidity(g);
+            checkLoaded(g);
             unsigned rows = g.get_SPT().size();
             unsigned j_lim = rows;
             if (!g.isDirected()) {
@@ -76,7 +76,7 @@ namespace ex1 {
         }
 
         string shortestPath(const Graph& g, unsigned src, unsigned dest) {
-            checkValidity(g);
+            checkLoaded(g);
             vector<int> SP = getShortestPath(g, src, dest, false);
             if (SP.empty()) {
                 cout << "No path" << endl;
@@ -135,7 +135,7 @@ namespace ex1 {
         }
 
         bool isContainsCycle(const Graph& g) {
-            checkValidity(g);
+            checkLoaded(g);
             unsigned vertices = g.get_matrix().size();
             vector<bool> visited(vertices, false);
             vector<bool> rec_visited(vertices, false);
@@ -161,7 +161,7 @@ namespace ex1 {
         }
 
         bool isBipartite(const Graph& g) {
-            checkValidity(g);
+            checkLoaded(g);
             unsigned vertices = g.get_matrix().size();
             int blue = -1;
             int white = 0;
@@ -234,7 +234,7 @@ namespace ex1 {
         }
 
         bool negativeCycle(const Graph& g) {
-            checkValidity(g);
+            checkLoaded(g);
             unsigned vertices = g.get_matrix().size();
             for (unsigned v = 0; v < vertices; v++) {
                 if (g.get_SPW()[v][v] < 0) {
