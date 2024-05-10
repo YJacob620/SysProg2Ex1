@@ -14,7 +14,7 @@ namespace ex1 {
         }
 
         bool isConnected(const Graph& g) {
-            checkLoaded(g);
+            checkValidity(g);
             unsigned rows = g.get_SPT().size();
             unsigned j_lim = rows;
             if (!g.isDirected()) {
@@ -32,7 +32,7 @@ namespace ex1 {
 
         /// @brief Reverses a vector.
         /// @param vec Vector to reverse.
-        void reverseVector(vector<unsigned>& vec) {
+        void reverseVector(vector<int>& vec) {
             unsigned n = vec.size();
             for (unsigned i = 0; i < n / 2; i++) {
                 std::swap(vec[i], vec[n - 1 - i]);
@@ -42,46 +42,55 @@ namespace ex1 {
         /// @brief Finds the shortest path between 2 verices in a graph and returns it. 
         /// @param g Given graph.
         /// @param src Source vertix.
-        /// @param dest Destination vertix.
-        /// @param negCycle Whether there is a negative cycle in the graph.
+        /// @param dest Destination vertix.f
+        /// @param negCycle Whether to expect a negative cycle between src and dest.
         /// @return The shortest path between SRC and DEST as a vector of indexes of vertices. 
         ///         If no path exists returns an empty vector.
-        vector<unsigned> getShortestPath(const Graph& g, unsigned src, unsigned dest, bool negCycle) {
+        vector<int> getShortestPath(const Graph& g, unsigned src, unsigned dest, bool negCycle) {
             vector<vector<G>> spt = g.get_SPT();
             unsigned rows = spt.size();
             if (src >= rows || dest >= rows) {
                 throw runtime_error("Vertices out of range.");
             }
             if (spt[src][dest] == NOPATH) {
-                return vector<unsigned>();
+                return {};
             }
-            vector<vector<G>> mat = g.get_matrix();
-            vector<unsigned> inversePath;
+            // vector<vector<G>> mat = g.get_matrix();
+            vector<int> inversePath;
             inversePath.push_back(dest);
             if (negCycle) {
                 dest = spt[src][dest];
                 inversePath.push_back(dest);
             }
-            while (src != dest) {
+            unsigned counter = 0;
+            while (src != dest && counter != rows) {
                 dest = spt[src][dest];
                 inversePath.push_back(dest);
+                ++counter;
+            }
+            if (counter == rows) {
+                return { -1 };
             }
             reverseVector(inversePath);
             return inversePath;
         }
 
         string shortestPath(const Graph& g, unsigned src, unsigned dest) {
-            checkLoaded(g);
-            vector<unsigned> SP = getShortestPath(g, src, dest, false);
+            checkValidity(g);
+            vector<int> SP = getShortestPath(g, src, dest, false);
             if (SP.empty()) {
                 cout << "No path" << endl;
                 return "";
             }
-            unsigned u = SP[0];
+            if (SP[0] == -1) {
+                cout << "No path (encountered a negative cycle)" << endl;
+                return "";
+            }
+            auto u = SP[0];
             string path = to_string(SP[0]);
             int pathWeight = 0;
             for (int i = 1;i < SP.size();i++) {
-                unsigned v = SP[i];
+                auto v = SP[i];
                 path += " -> " + to_string(v);
                 pathWeight += g.get_matrix()[u][v];
                 u = v;
@@ -126,7 +135,7 @@ namespace ex1 {
         }
 
         bool isContainsCycle(const Graph& g) {
-            checkLoaded(g);
+            checkValidity(g);
             unsigned vertices = g.get_matrix().size();
             vector<bool> visited(vertices, false);
             vector<bool> rec_visited(vertices, false);
@@ -152,7 +161,7 @@ namespace ex1 {
         }
 
         bool isBipartite(const Graph& g) {
-            checkLoaded(g);
+            checkValidity(g);
             unsigned vertices = g.get_matrix().size();
             int blue = -1;
             int white = 0;
@@ -225,11 +234,11 @@ namespace ex1 {
         }
 
         bool negativeCycle(const Graph& g) {
-            checkLoaded(g);
+            checkValidity(g);
             unsigned vertices = g.get_matrix().size();
             for (unsigned v = 0; v < vertices; v++) {
                 if (g.get_SPW()[v][v] < 0) {
-                    vector<unsigned> negCyc = getShortestPath(g, v, v, true);
+                    vector<int> negCyc = getShortestPath(g, v, v, true);
                     unsigned u = negCyc[0];
                     string path = to_string(negCyc[0]);
                     int pathWeight = 0;
